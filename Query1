@@ -1,14 +1,7 @@
 create table if not exists Genre (
 	id TEXT primary key,
 	title TEXT,
-	artist_id TEXT
-);
-
-create table if not exists Album (
-	id TEXT primary key,
-	title TEXT,
-	year INTEGER,
-	artist_id TEXT
+	artist_id TEXT references Artist(id)
 );
 
 create table if not exists Artist (
@@ -16,6 +9,13 @@ create table if not exists Artist (
 	name TEXT,
 	genre_id TEXT references Genre(id),
 	album_id TEXT references Album(id)
+);
+
+create table if not exists Album (
+	id TEXT primary key,
+	title TEXT,
+	year INTEGER,
+	artist_id TEXT references Artist(id)
 );
 
 create table if not exists Track (
